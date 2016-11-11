@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xml>
+    <pantalla>
+        <enemigo>
+            <nombre>superman</nombre>
+            <ataque>16</ataque>
+            <vida>3</vida>
+            <fecha_nacimiento>12/12/2300</fecha_nacimiento>
+        </enemigo>
+        <enemigo>
+            <nombre>batman</nombre>
+            <ataque>146</ataque>
+            <vida>34</vida>
+            <fecha_nacimiento>12/12/2300</fecha_nacimiento>
+        </enemigo>
+        <enemigo>
+            <nombre>robin</nombre>
+            <ataque>164</ataque>
+            <vida>34</vida>
+            <fecha_nacimiento>12/12/2300</fecha_nacimiento>
+        </enemigo>
+    </pantalla>
+</xml>
