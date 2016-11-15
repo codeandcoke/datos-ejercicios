@@ -1,0 +1,5 @@
+jugadores (#id, nombre, apellidos, direccion, telefono,    		   fecha_nacimiento, -id_equipo)
+equipos (#id, nombre, patrocinador, color1, color2, categoria)
+partidos (#id, campo, arbitro, incidencias)
+juega (#(-id_equipo, -id_partido), condicion, goles)
+
