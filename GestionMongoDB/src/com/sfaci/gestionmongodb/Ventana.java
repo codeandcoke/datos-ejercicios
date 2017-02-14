@@ -24,7 +24,7 @@ public class Ventana {
     JDateChooser dcFecha;
     JLabel lbEstado;
 
-    DefaultTableModel dtm;
+    DefaultTableModel dtmLibros;
 
     public Ventana() {
         JFrame frame = new JFrame("Ventana");
@@ -38,12 +38,12 @@ public class Ventana {
     }
 
     private void prepararTabla() {
-        dtm = new DefaultTableModel();
-        dtm.addColumn("Título");
-        dtm.addColumn("Descripción");
-        dtm.addColumn("Autor");
-        dtm.addColumn("Fecha");
-        dtm.addColumn("Disponible");
-        tbLibros.setModel(dtm);
+        dtmLibros = new DefaultTableModel();
+        dtmLibros.addColumn("Título");
+        dtmLibros.addColumn("Descripción");
+        dtmLibros.addColumn("Autor");
+        dtmLibros.addColumn("Fecha");
+        dtmLibros.addColumn("Disponible");
+        tbLibros.setModel(dtmLibros);
     }
 }

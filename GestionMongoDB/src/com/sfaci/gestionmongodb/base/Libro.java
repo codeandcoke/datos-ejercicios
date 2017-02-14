@@ -1,5 +1,7 @@
 package com.sfaci.gestionmongodb.base;
 
+import org.bson.types.ObjectId;
+
 import java.util.Date;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Date;
  */
 public class Libro {
 
+    private ObjectId id;
     private String titulo;
     private String descripcion;
     private String autor;
@@ -16,6 +19,10 @@ public class Libro {
     public Libro() {
 
     }
+
+    public void setId(ObjectId id) { this.id = id; }
+
+    public ObjectId getId() { return id; }
 
     public String getTitulo() {
         return titulo;

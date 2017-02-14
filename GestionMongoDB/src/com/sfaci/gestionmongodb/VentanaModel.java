@@ -64,6 +64,7 @@ public class VentanaModel {
             Document documento = iterLibros.next();
 
             libro = new Libro();
+            libro.setId(documento.getObjectId(_ID));
             libro.setTitulo(documento.getString(TITULO));
             libro.setDescripcion(documento.getString(DESCRIPCION));
             libro.setAutor(documento.getString(AUTOR));
