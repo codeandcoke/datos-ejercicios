@@ -1,5 +1,6 @@
 package com.sfaci.gestionmongodb;
 
+import com.sfaci.gestionmongodb.base.Editorial;
 import com.sfaci.gestionmongodb.base.Libro;
 import com.sfaci.gestionmongodb.util.Util;
 
@@ -44,6 +45,9 @@ public class VentanaController implements ActionListener,
 
     private void cargarLibros() {
 
+        /*
+        Lista la información de los libros en la tabla
+         */
         ArrayList<Libro> libros = model.obtenerLibros();
         view.dtmLibros.setNumRows(0);
         for (Libro libro : libros) {
@@ -52,9 +56,18 @@ public class VentanaController implements ActionListener,
                     libro.getDescripcion(),
                     libro.getAutor(),
                     Util.formatFecha(libro.getFecha()),
-                    String.valueOf(libro.isDisponible())
+                    String.valueOf(libro.isDisponible()),
+                    libro.getEditorial().toString()
             };
             view.dtmLibros.addRow(fila);
+        }
+
+        /*
+        Refresca el combo de las editoriales
+         */
+        view.cbEditoriales.removeAllItems();
+        for (Editorial editorial : model.obtenerEditoriales()) {
+            view.cbEditoriales.addItem(editorial);
         }
     }
 
@@ -92,7 +105,9 @@ public class VentanaController implements ActionListener,
                 libro.setAutor(view.tfAutor.getText());
                 libro.setFecha(view.dcFecha.getDate());
                 libro.setDisponible(view.checkDisponible.isSelected());
+                libro.setEditorial((Editorial) view.cbEditoriales.getSelectedItem());
                 model.insertarLibro(libro);
+                cargarLibros();
                 break;
             case "Modificar":
                 break;

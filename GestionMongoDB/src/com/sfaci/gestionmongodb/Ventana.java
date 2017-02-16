@@ -1,9 +1,12 @@
 package com.sfaci.gestionmongodb;
 
+import com.sfaci.gestionmongodb.base.Editorial;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import static com.sfaci.gestionmongodb.util.Constantes.*;
 
 /**
  * Created by dam on 10/02/17.
@@ -23,6 +26,9 @@ public class Ventana {
     JCheckBox checkDisponible;
     JDateChooser dcFecha;
     JLabel lbEstado;
+    JTextField tfNombreEditorial;
+    JTextField tfTelefonos;
+    JComboBox<Editorial> cbEditoriales;
 
     DefaultTableModel dtmLibros;
 
@@ -39,11 +45,16 @@ public class Ventana {
 
     private void prepararTabla() {
         dtmLibros = new DefaultTableModel();
-        dtmLibros.addColumn("Título");
-        dtmLibros.addColumn("Descripción");
-        dtmLibros.addColumn("Autor");
-        dtmLibros.addColumn("Fecha");
-        dtmLibros.addColumn("Disponible");
+        dtmLibros.addColumn(TITULO);
+        dtmLibros.addColumn(DESCRIPCION);
+        dtmLibros.addColumn(AUTOR);
+        dtmLibros.addColumn(FECHA);
+        dtmLibros.addColumn(DISPONIBLE);
+        dtmLibros.addColumn(EDITORIAL);
         tbLibros.setModel(dtmLibros);
+    }
+
+    private void createUIComponents() {
+        cbEditoriales = new JComboBox<Editorial>();
     }
 }

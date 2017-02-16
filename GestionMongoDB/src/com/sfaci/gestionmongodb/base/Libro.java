@@ -15,6 +15,7 @@ public class Libro {
     private String autor;
     private Date fecha;
     private boolean disponible;
+    private Editorial editorial;
 
     public Libro() {
 
@@ -62,5 +63,13 @@ public class Libro {
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    public Editorial getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(Editorial editorial) {
+        this.editorial = editorial;
     }
 }
