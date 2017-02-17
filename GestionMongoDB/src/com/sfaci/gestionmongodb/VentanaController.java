@@ -49,17 +49,9 @@ public class VentanaController implements ActionListener,
         Lista la información de los libros en la tabla
          */
         ArrayList<Libro> libros = model.obtenerLibros();
-        view.dtmLibros.setNumRows(0);
+        view.tbLibros.vaciar();
         for (Libro libro : libros) {
-            String[] fila = new String[]{
-                    libro.getTitulo(),
-                    libro.getDescripcion(),
-                    libro.getAutor(),
-                    Util.formatFecha(libro.getFecha()),
-                    String.valueOf(libro.isDisponible()),
-                    libro.getEditorial().toString()
-            };
-            view.dtmLibros.addRow(fila);
+            view.tbLibros.anadirLibro(libro);
         }
 
         /*
@@ -71,20 +63,13 @@ public class VentanaController implements ActionListener,
         }
     }
 
-    private void cargarDatos(int fila) {
+    private void cargarDatos(Libro libro) {
 
-        view.tfTitulo.setText((String) view.tbLibros.getValueAt(fila, 0));
-        view.tfDescripcion.setText((String) view.tbLibros.getValueAt(fila, 1));
-        view.tfAutor.setText((String) view.tbLibros.getValueAt(fila, 2));
-        try {
-            view.dcFecha.setDate(
-                    Util.parseFecha((String) view.tbLibros.getValueAt(fila, 3)));
-        } catch(ParseException pe) {
-            Util.mensajeError("Formato de fecha",
-                    "Formato de fecha incorrecto. No se ha podido cargar");
-        }
-        view.checkDisponible.setSelected(
-                Boolean.parseBoolean((String) view.tbLibros.getValueAt(fila, 4)));
+        view.tfTitulo.setText(libro.getTitulo());
+        view.tfDescripcion.setText(libro.getDescripcion());
+        view.tfAutor.setText(libro.getAutor());
+        view.dcFecha.setDate(libro.getFecha());
+        view.checkDisponible.setSelected(libro.isDisponible());
     }
 
     @Override
@@ -121,8 +106,8 @@ public class VentanaController implements ActionListener,
     @Override
     public void valueChanged(ListSelectionEvent e) {
 
-        int filaSeleccionada = view.tbLibros.getSelectedRow();
-        cargarDatos(filaSeleccionada);
+        Libro libro = view.tbLibros.obtenerLibroSeleccionado();
+        cargarDatos(libro);
 
     }
 }

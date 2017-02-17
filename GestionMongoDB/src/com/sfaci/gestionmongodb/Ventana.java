@@ -22,15 +22,13 @@ public class Ventana {
     JTextField tfTitulo;
     JTextField tfDescripcion;
     JTextField tfAutor;
-    JTable tbLibros;
     JCheckBox checkDisponible;
     JDateChooser dcFecha;
     JLabel lbEstado;
     JTextField tfNombreEditorial;
     JTextField tfTelefonos;
     JComboBox<Editorial> cbEditoriales;
-
-    DefaultTableModel dtmLibros;
+    TablaLibros tbLibros;
 
     public Ventana() {
         JFrame frame = new JFrame("Ventana");
@@ -39,20 +37,8 @@ public class Ventana {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
-        prepararTabla();
     }
 
-    private void prepararTabla() {
-        dtmLibros = new DefaultTableModel();
-        dtmLibros.addColumn(TITULO);
-        dtmLibros.addColumn(DESCRIPCION);
-        dtmLibros.addColumn(AUTOR);
-        dtmLibros.addColumn(FECHA);
-        dtmLibros.addColumn(DISPONIBLE);
-        dtmLibros.addColumn(EDITORIAL);
-        tbLibros.setModel(dtmLibros);
-    }
 
     private void createUIComponents() {
         cbEditoriales = new JComboBox<Editorial>();

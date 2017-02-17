@@ -6,6 +6,7 @@ import com.sfaci.gestionmongodb.util.Util;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.sfaci.gestionmongodb.util.Constantes.*;
 
@@ -15,11 +16,11 @@ import static com.sfaci.gestionmongodb.util.Constantes.*;
 public class TablaLibros extends JTable {
 
     private DefaultTableModel dtm;
-    private ArrayList<Libro> libros;
+    private HashMap<String, Libro> libros;
 
     public TablaLibros() {
         super();
-        libros = new ArrayList<>();
+        libros = new HashMap<>();
 
         dtm = new DefaultTableModel();
         dtm.addColumn(TITULO);
@@ -28,6 +29,10 @@ public class TablaLibros extends JTable {
         dtm.addColumn(FECHA);
         dtm.addColumn(DISPONIBLE);
         setModel(dtm);
+    }
+
+    public void vaciar() {
+        dtm.setNumRows(0);
     }
 
     public void anadirLibro(Libro libro) {
@@ -41,17 +46,24 @@ public class TablaLibros extends JTable {
         };
         dtm.addRow(fila);
 
-        libros.add(libro);
+        libros.put(libro.getTitulo(), libro);
     }
 
     public Libro obtenerLibroSeleccionado() {
 
-        return null;
+        int filaSeleccionada = getSelectedRow();
+        if (filaSeleccionada == -1)
+            return null;
+
+        return obtenerLibro(filaSeleccionada);
     }
 
     public Libro obtenerLibro(int fila) {
 
-        return null;
+        String tituloSeleccionado =
+                (String) getValueAt(fila, 0);
+        Libro libro = libros.get(tituloSeleccionado);
 
+        return libro;
     }
 }

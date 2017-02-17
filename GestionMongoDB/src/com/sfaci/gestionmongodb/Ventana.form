@@ -149,7 +149,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="8c6ee" class="javax.swing.JTable" binding="tbLibros">
+                  <component id="7b339" class="com.sfaci.gestionmongodb.TablaLibros" binding="tbLibros">
                     <constraints/>
                     <properties/>
                   </component>
