@@ -5,7 +5,6 @@ import com.sfaci.gestionmongodb.util.Util;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.sfaci.gestionmongodb.util.Constantes.*;
@@ -28,6 +27,7 @@ public class TablaLibros extends JTable {
         dtm.addColumn(AUTOR);
         dtm.addColumn(FECHA);
         dtm.addColumn(DISPONIBLE);
+        dtm.addColumn(EDITORIAL);
         setModel(dtm);
     }
 
@@ -42,7 +42,8 @@ public class TablaLibros extends JTable {
                 libro.getDescripcion(),
                 libro.getAutor(),
                 Util.formatFecha(libro.getFecha()),
-                String.valueOf(libro.isDisponible())
+                String.valueOf(libro.isDisponible()),
+                libro.getEditorial().getNombre()
         };
         dtm.addRow(fila);
 
