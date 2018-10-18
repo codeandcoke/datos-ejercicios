@@ -21,9 +21,14 @@ public class Modelo {
 		if (new File(NOMBRE_FICHERO).exists()) 
 			cargarDeDisco();
 		else
-			pokemones = new HashMap<String, Pokemon>();
+			pokemones = new HashMap<>();
 	}
 	
+	/**
+	 * Guarda un Pokemon en el fichero
+	 * @param pokemon
+	 * @throws IOException
+	 */
 	public void guardar(Pokemon pokemon) throws IOException {
 		
 		pokemones.put(pokemon.getNombre(), pokemon);

@@ -1,5 +1,7 @@
 package com.sfaci.pokemon.ui;
 
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.DefaultListModel;
@@ -8,12 +10,22 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import com.sfaci.pokemon.base.Pokemon;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 
-public class Vista {
+public class Vista extends JFrame {
 
 	JFrame ventana;
 	public JTextField tfNombre;
@@ -24,10 +36,11 @@ public class Vista {
 	public JScrollPane scrollPane;
 	public JList<Pokemon> lPokemons;
 	public DefaultListModel<Pokemon> mPokemons;
+	public JLabel lbImagen;
 
 	public Vista() {
 		ventana = new JFrame();
-		ventana.setBounds(100, 100, 450, 300);
+		ventana.setBounds(100, 100, 450, 366);
 		ventana.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre*");
@@ -72,7 +85,7 @@ public class Vista {
 		ventana.getContentPane().add(cbTipo);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(208, 31, 166, 180);
+		scrollPane.setBounds(258, 11, 166, 180);
 		ventana.getContentPane().add(scrollPane);
 		
 		lPokemons = new JList<>();
@@ -82,6 +95,13 @@ public class Vista {
 		mPokemons = new DefaultListModel<>();
 		lPokemons.setModel(mPokemons);
 		
+		lbImagen = new JLabel("");
+		lbImagen.setIcon(new ImageIcon("C:\\PMDM\\projects\\ListViewEjemplo\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"));
+		lbImagen.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Imagen", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		lbImagen.setBounds(159, 13, 89, 130);
+		ventana.getContentPane().add(lbImagen);
+		
 		ventana.setLocationRelativeTo(null);
+		ventana.repaint();		
 	}
 }

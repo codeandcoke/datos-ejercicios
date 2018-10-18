@@ -2,18 +2,26 @@ package com.sfaci.pokemon;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import com.sfaci.pokemon.base.Pokemon;
 import com.sfaci.pokemon.base.Pokemon.Tipo;
 import com.sfaci.pokemon.ui.Vista;
+import com.sfaci.pokemon.util.Util;
 
-public class Controlador implements ActionListener {
+public class Controlador implements ActionListener, MouseListener {
 
 	private Vista vista;
 	private Modelo modelo;
+	
+	private String nombreImagen;
 	
 	public Controlador(Vista vista, Modelo modelo) {
 		this.vista = vista;
@@ -40,6 +48,7 @@ public class Controlador implements ActionListener {
 	private void addListeners() {
 		
 		vista.btAnadir.addActionListener(this);
+		vista.lbImagen.addMouseListener(this);
 	}
 
 	@Override
@@ -92,5 +101,49 @@ public class Controlador implements ActionListener {
 			default:
 				break;
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showOpenDialog(null) == JFileChooser.CANCEL_OPTION)
+			return;
+		
+		File ficheroSeleccionado = jfc.getSelectedFile();
+		vista.lbImagen.setIcon(
+				new ImageIcon(ficheroSeleccionado.getAbsolutePath()));
+		nombreImagen = ficheroSeleccionado.getName();
+		
+		try {
+			Util.copiarImagen(ficheroSeleccionado.getAbsolutePath(), 
+					nombreImagen);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			// TODO JOptionPane
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

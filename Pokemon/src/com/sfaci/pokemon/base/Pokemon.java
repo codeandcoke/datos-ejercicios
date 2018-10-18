@@ -1,5 +1,6 @@
 package com.sfaci.pokemon.base;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 public class Pokemon implements Serializable {
@@ -15,6 +16,7 @@ public class Pokemon implements Serializable {
 	private Tipo tipo;
 	private int nivel;
 	private float peso;
+	private String imagen;
 	
 	public String getNombre() {
 		return nombre;
@@ -48,8 +50,15 @@ public class Pokemon implements Serializable {
 		this.peso = peso;
 	}
 	
-	public String toString() {
-		
+	public String toString() {	
 		return nombre;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }
