@@ -1,0 +1,31 @@
+package com.julen.atraccion;
+
+import java.util.concurrent.Semaphore;
+
+public class Atraccion {
+		public static int cola=0;
+		private static Persona persona;
+		
+		public static void main(String[] args) {
+			
+			Semaphore semaforoPase = new Semaphore(5);
+			Semaphore semaforoSala = new Semaphore(0);
+			final int numUsu=15;
+			
+			/*liberacion = new LiberacionSemaforo(semaforoSala);
+			liberacion.start();*/
+			
+			for (int i=0; i<numUsu;i++) {
+				persona = new Persona(semaforoPase,semaforoSala,i+1);
+				persona.start();
+			}
+			
+			for (int i=0;i<numUsu;i++) {
+				try {
+					persona.join();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+}

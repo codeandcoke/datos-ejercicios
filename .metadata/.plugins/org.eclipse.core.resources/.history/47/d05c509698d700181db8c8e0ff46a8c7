@@ -1,0 +1,91 @@
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class App extends JFrame
+{
+	public App()
+	{
+		super ("GridBagLayout");
+		this.setSize(600, 400);
+		GridBagLayout gridBag = new GridBagLayout();  
+		this.setLayout(gridBag);
+
+		//constraint es una variable que reutilizamos en los distintos componentes
+		//y se hace efectiva dentro del método add
+		GridBagConstraints constraints = new GridBagConstraints();
+
+		JTextArea cajaTexto = new JTextArea("Area texto");
+		constraints.gridx = 0; //x -> columna 0
+		constraints.gridy = 0; //y -> fila 0
+		constraints.gridwidth = 2; // ocupa el equivalente a dos columnas
+		constraints.gridheight = 2; // ocupa el equivalente a dos filas
+		constraints.fill = GridBagConstraints.BOTH; // El JText se estirará en la vertical y horizontal.
+		constraints.weighty = 1.0; //toma todo el alto que hay de espacio extra
+		constraints.weightx = 1.0; //Así como todo el ancho
+		this.add (cajaTexto, constraints);
+
+		//resteamos las propiedades más específicas para que no afecten 
+		//al siguiente componente
+		constraints.fill = GridBagConstraints.NONE;
+		constraints.weightx = 0f;
+		constraints.weighty = 0f;
+
+
+		JButton boton1 = new JButton ("Boton 1");
+		constraints.gridx = 2;//columna 2
+		constraints.gridy = 0;//fila 0
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.anchor = GridBagConstraints.NORTH; //posición NORTH dentro de su celda
+		this.add (boton1, constraints);
+
+		//reseteamos 
+		constraints.anchor = GridBagConstraints.CENTER;
+		constraints.weightx = 0f;
+
+
+		JButton boton2 = new JButton ("Boton 2");
+		constraints.gridx = 2;//columna 2
+		constraints.gridy = 1;//fila 1
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.anchor = GridBagConstraints.CENTER;
+		this.add (boton2, constraints);
+
+		//reseteamos 
+		constraints.anchor = GridBagConstraints.CENTER;
+
+		JButton boton3 = new JButton ("Boton 3");
+		constraints.gridx = 2;//columna 2
+		constraints.gridy = 2;//fila 1
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		this.add (boton3, constraints);
+
+		JButton boton4 = new JButton ("Boton 4");
+		constraints.gridx = 0;
+		constraints.gridy = 2;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		this.add (boton4, constraints);
+
+		JTextField campoTexto = new JTextField ("Campo texto");
+		constraints.gridx = 1;
+		constraints.gridy = 2;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.fill = GridBagConstraints.HORIZONTAL; //Ocupa toda la horizontal
+		this.add (campoTexto, constraints);
+
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public static void main(String [] args) {
+		new App();
+	}
+}

@@ -1,0 +1,40 @@
+package com.julen.atraccion;
+
+import java.util.concurrent.Semaphore;
+
+public class Persona extends Thread {
+
+	private Semaphore semaforo;
+	private Semaphore semaforoSala;
+	private int numHilo;
+	Persona(Semaphore semaforo,Semaphore semaforoSala,int numHilo ){
+		this.semaforo=semaforo;
+		this.numHilo=numHilo;
+		this.semaforoSala=semaforoSala;
+	}
+	
+	public void run() {
+		try {
+			semaforo.acquire();
+					Atraccion.cola=Atraccion.cola+1;
+					System.out.print("Soy la persona "+numHilo+" esperando en la sala\n");			
+				if (Atraccion.cola<5) {
+					semaforoSala.acquire();
+					System.out.print("Soy el hilo "+numHilo+" subiendo al coche\n");
+				}
+				else {
+						semaforoSala.release(4);
+						System.out.print("Soy el hilo "+numHilo+" subiendo al coche\n");
+						System.out.println("Atraccion empezando");
+						Atraccion.cola=0;
+						semaforo.release(5);
+				}
+				
+				
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+}

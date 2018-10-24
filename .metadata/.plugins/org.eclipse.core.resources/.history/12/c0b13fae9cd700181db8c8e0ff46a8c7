@@ -1,0 +1,98 @@
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+
+public class App extends JFrame{
+
+	public App(){
+		super("Impresora");
+
+		//Establecemos el layout
+		GridBagLayout layout = new GridBagLayout();
+		this.setLayout(layout);
+
+		//Inicializamos objeto de restricciones
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		//CELDAS EN FILAS Y COLUMNAS
+
+		//CELDAS DE LA PRIMERA COLUMNA (X=0)
+		//CELDA 0 0
+		JLabel tipoLabel = new JLabel("Tipo");
+		gbc.gridx = 0; //col
+		gbc.gridy = 0; //fila
+		gbc.anchor = GridBagConstraints.WEST;
+		this.add(tipoLabel, gbc);
+
+		
+		//reseteamos la propiedad anchor para que no afecte a los demás componentes
+		gbc.anchor = GridBagConstraints.CENTER;
+
+		//CELDA 1 0
+		JCheckBox imgCheck = new JCheckBox("Imagen");
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		imgCheck.setPreferredSize(new Dimension(85,25)); //para que imgCheck y txtCheck se mantengan alineados en la misma vertical establecemos para ambos el mismo ancho: 85px
+		this.add(imgCheck, gbc);
+
+		//CELDA 2 0
+		JCheckBox txtCheck = new JCheckBox("Texto");
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		txtCheck.setPreferredSize(new Dimension(85,25));
+		this.add(txtCheck, gbc);
+
+		//CELDA 3 0
+		JLabel calidadLabel = new JLabel("Calidad de impresión");
+		gbc.gridx = 0; //col
+		gbc.gridy = 3; //fila
+		this.add(calidadLabel, gbc);
+
+		//CELDAS DE LA SEGUNDA COLUMNA (X=1)
+		//CELDA 3 1
+		String [] calidadStr = {"ALTA", "MEDIA", "BAJA"};
+		JComboBox<String> calidadCombo = new JComboBox<String>(calidadStr);
+		gbc.gridx = 1; //col
+		gbc.gridy = 3; //fila
+		this.add(calidadCombo, gbc);
+
+		//CELDAS DE LA TERCERA COLUMNA (X=2)
+		//CELDA 0 2
+		JButton aceptarBtn = new JButton("Aceptar");
+		gbc.gridx = 2; //col
+		gbc.gridy = 0; //fila
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		this.add(aceptarBtn, gbc);
+
+		//CELDA 1 2
+		JButton configBtn = new JButton("Configuración");
+		gbc.gridx = 2; //col
+		gbc.gridy = 1; //fila
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		this.add(configBtn, gbc);
+		
+		//CELDA 2 2
+		JButton cerrarBtn = new JButton("Cerrar");
+		gbc.gridx = 2; //col
+		gbc.gridy = 2; //fila
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		this.add(cerrarBtn, gbc);
+		
+		this.pack();//para que la ventana tome un ancho y alto automático acorde con los componentes dispuestos en pantalla
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+	public static void main(String [] args){
+		new App();
+	}
+
+}

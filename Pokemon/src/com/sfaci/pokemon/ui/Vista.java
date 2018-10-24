@@ -24,6 +24,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Vista extends JFrame {
 
@@ -31,12 +33,16 @@ public class Vista extends JFrame {
 	public JTextField tfNombre;
 	public JTextField tfNivel;
 	public JTextField tfPeso;
-	public JButton btAnadir;
+	public JButton btEditar;
 	public JComboBox<Pokemon.Tipo> cbTipo;
 	public JScrollPane scrollPane;
 	public JList<Pokemon> lPokemons;
 	public DefaultListModel<Pokemon> mPokemons;
 	public JLabel lbImagen;
+	public JButton btEliminar;
+	public JButton btNuevo;
+	public JButton btGuardar;
+	public JButton btCancelar;
 
 	public Vista() {
 		ventana = new JFrame();
@@ -75,10 +81,15 @@ public class Vista extends JFrame {
 		ventana.getContentPane().add(tfPeso);
 		tfPeso.setColumns(10);
 		
-		btAnadir = new JButton("A\u00F1adir");
-		btAnadir.setActionCommand("anadir");
-		btAnadir.setBounds(63, 169, 89, 23);
-		ventana.getContentPane().add(btAnadir);
+		btEditar = new JButton("");
+		btEditar.setIcon(new ImageIcon("C:\\Users\\Profesor\\Downloads\\open_icon_library-standard-0.11\\open_icon_library-standard\\icons\\png\\32x32\\actions\\edit.png"));
+		btEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btEditar.setActionCommand("editar");
+		btEditar.setBounds(66, 173, 50, 41);
+		ventana.getContentPane().add(btEditar);
 		
 		cbTipo = new JComboBox<>();
 		cbTipo.setBounds(66, 59, 86, 20);
@@ -100,6 +111,30 @@ public class Vista extends JFrame {
 		lbImagen.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Imagen", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		lbImagen.setBounds(159, 13, 89, 130);
 		ventana.getContentPane().add(lbImagen);
+		
+		btEliminar = new JButton("");
+		btEliminar.setActionCommand("eliminar");
+		btEliminar.setIcon(new ImageIcon("C:\\Users\\Profesor\\Downloads\\open_icon_library-standard-0.11\\open_icon_library-standard\\icons\\png\\32x32\\actions\\edit-delete-2.png"));
+		btEliminar.setBounds(374, 202, 50, 41);
+		ventana.getContentPane().add(btEliminar);
+		
+		btNuevo = new JButton("");
+		btNuevo.setActionCommand("nuevo");
+		btNuevo.setIcon(new ImageIcon("C:\\Users\\Profesor\\Downloads\\open_icon_library-standard-0.11\\open_icon_library-standard\\icons\\png\\32x32\\actions\\contact-new-3.png"));
+		btNuevo.setBounds(10, 173, 50, 41);
+		ventana.getContentPane().add(btNuevo);
+		
+		btGuardar = new JButton("");
+		btGuardar.setActionCommand("guardar");
+		btGuardar.setIcon(new ImageIcon("C:\\Users\\Profesor\\Downloads\\open_icon_library-standard-0.11\\open_icon_library-standard\\icons\\png\\32x32\\actions\\document-save-5.png"));
+		btGuardar.setBounds(126, 173, 50, 41);
+		ventana.getContentPane().add(btGuardar);
+		
+		btCancelar = new JButton("");
+		btCancelar.setActionCommand("cancelar");
+		btCancelar.setIcon(new ImageIcon("C:\\Users\\Profesor\\Downloads\\open_icon_library-standard-0.11\\open_icon_library-standard\\icons\\png\\32x32\\actions\\dialog-cancel-5.png"));
+		btCancelar.setBounds(186, 173, 50, 41);
+		ventana.getContentPane().add(btCancelar);
 		
 		ventana.setLocationRelativeTo(null);
 		ventana.repaint();		

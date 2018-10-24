@@ -1,0 +1,42 @@
+package es.centroafuera.ad.ejemplos.ficheros;
+
+import org.apache.commons.io.*;
+import org.apache.commons.io.filefilter.*;
+
+
+public class FileUtilsExample2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// Ejemplos a realizar. Todos los ejercicios se resuelven principalmente con un 
+		// método de la clase FileUtils.
+		
+		//1.- Copia dos directorios a partir de dos objetos File
+		
+		//2.- Copiar los ficheros con extensión txt en un directorio. SuffixFileFilter
+		FileUtils.copyDirectory(
+				FileUtils.getFile("c:\\directorio"),FileUtils.getFile("c:\\directorio\\" + "copiedFilterPath\\"),
+				new SuffixFileFilter(".zip"));
+
+		
+		//3.- Comparar contenido de dos ficheros
+		
+		//4.- Borrar un directorio OJO!
+				
+		//5.- Leer un fichero y pasarlo a un string, con un solo método.
+				
+		//6.- Copiar un fichero en otro. Le paso dos ficheros, el primero es el origen y el segundo 
+		//    donde lo quiero copiar. MOVER!!
+				
+		//7.- Copiar un fichero en un directorio determinado.
+				
+		//8.- Obtener el directorio del usuario de sesión.
+		
+		//9.- Obtener el directorio temporal del sistema.
+		
+	
+
+	}
+
+}
