@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class Modelo {
 
 	private final String IP = "192.168.34.5";
-	private final String BASE_DATOS = "damt";
-	private final String USUARIO = "damt";
-	private final String CONTRASENA = "damt";
+	private final String BASE_DATOS = "sfaci";
+	private final String USUARIO = "sfaci";
+	private final String CONTRASENA = "4fu3r4";
 	
 	private Connection conexion;
 	
@@ -35,7 +35,7 @@ public class Modelo {
 		throws SQLException {
 		
 		String sql = "SELECT id FROM usuarios WHERE usuario = ? " +
-					"AND contrasena = ?";
+					"AND contrasena = SHA1(?)";
 		
 		PreparedStatement sentencia = conexion.prepareStatement(sql);
 		sentencia.setString(1, usuario);
