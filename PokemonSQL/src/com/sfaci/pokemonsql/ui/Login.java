@@ -1,4 +1,4 @@
-package com.sfaci.login.ui;
+package com.sfaci.pokemonsql.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

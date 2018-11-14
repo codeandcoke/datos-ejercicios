@@ -1,6 +1,6 @@
-package com.sfaci.login;
+package com.sfaci.pokemonsql;
 
-import com.sfaci.login.ui.Vista;
+import com.sfaci.pokemonsql.ui.Vista;
 
 public class Programa {
 
