@@ -83,6 +83,8 @@ public class Modelo {
 	
 	public List<Arma> getArmas() {
 		
-		return null;
+		Session sesion = HibernateUtil.getCurrentSession();
+		ArrayList<Arma> armas = (ArrayList<Arma>) sesion.createQuery("FROM Arma").list();
+		return armas;
 	}
 }
