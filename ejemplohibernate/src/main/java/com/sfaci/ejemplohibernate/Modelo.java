@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import com.sfaci.ejemplohibernate.base.Arma;
 import com.sfaci.ejemplohibernate.base.Personaje;
 
 public class Modelo {
@@ -64,6 +65,23 @@ public class Modelo {
 	}
 	
 	public List<Personaje> getPersonajes(String busqueda) {
+		
+		return null;
+	}
+	
+	public void nueva(Arma arma) {
+		
+	}
+	
+	public void modificar(Arma arma) {
+		
+	}
+	
+	public void eliminar(Arma arma) {
+		
+	}
+	
+	public List<Arma> getArmas() {
 		
 		return null;
 	}
