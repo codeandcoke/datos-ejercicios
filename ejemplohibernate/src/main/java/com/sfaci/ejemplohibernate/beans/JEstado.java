@@ -6,6 +6,9 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Barra de estado para mostrar mensajes de la aplicación
+ */
 public class JEstado extends JPanel {
 	public JLabel lbEstado;
 

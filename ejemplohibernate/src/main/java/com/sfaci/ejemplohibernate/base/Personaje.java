@@ -84,4 +84,16 @@ public class Personaje {
 	public String toString() {
 		return nombre;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Personaje))
+			return false;
+		
+		Personaje personaje = (Personaje) o;
+		if (nombre.equals(personaje.getNombre()))
+			return true;
+		
+		return false;
+	}
 }

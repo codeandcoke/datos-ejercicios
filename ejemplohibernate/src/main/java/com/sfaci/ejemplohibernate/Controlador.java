@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.sfaci.ejemplohibernate.base.Arma;
 import com.sfaci.ejemplohibernate.base.Personaje;
+import com.sfaci.ejemplohibernate.beans.JComboGenerico;
 import com.sfaci.ejemplohibernate.beans.PanelArmas;
 import com.sfaci.ejemplohibernate.beans.PanelPersonajes;
 import com.sfaci.ejemplohibernate.ui.Vista;
@@ -60,8 +62,6 @@ public class Controlador implements ActionListener, ListSelectionListener, Focus
 	}
 	
 	private void nuevoPersonaje() {
-		
-		
 		modoEdicion(true);
 	}
 	

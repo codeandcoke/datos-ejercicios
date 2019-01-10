@@ -4,6 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 
+/**
+ * Panel con botones para lanzar las acciones de edición
+ * de los elementos de la aplicación
+ */
 public class JBotonesCrud extends JPanel {
 	public JButton btNuevo;
 	public JButton btGuardar;
@@ -11,9 +15,6 @@ public class JBotonesCrud extends JPanel {
 	public JButton btCancelar;
 	public JButton btEliminar;
 
-	/**
-	 * Create the panel.
-	 */
 	public JBotonesCrud() {
 		setLayout(null);
 		

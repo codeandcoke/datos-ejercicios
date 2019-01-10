@@ -48,6 +48,21 @@ public class Arma {
 		this.duracion = duracion;
 	}
 	
+	@Override
+	public String toString() {
+		return nombre;
+	}
 	
-
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Arma))
+			return false;
+		
+		Arma arma = (Arma) o;
+		
+		if (nombre.equals(arma.getNombre()))
+			return true;
+		
+		return false;
+	}
 }

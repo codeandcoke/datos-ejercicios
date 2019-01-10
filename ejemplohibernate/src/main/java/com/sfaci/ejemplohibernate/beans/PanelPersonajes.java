@@ -11,6 +11,9 @@ import javax.swing.JList;
 import com.sfaci.ejemplohibernate.base.Personaje;
 import java.util.List;
 
+/**
+ * Panel para la gestión de los personajes de la aplicación
+ */
 public class PanelPersonajes extends JPanel {
 	public JBotonesCrud botonesCrud;
 	public JTextField tfNombre;
@@ -21,7 +24,8 @@ public class PanelPersonajes extends JPanel {
 	public JLabel lblNewLabel_1;
 	public JLabel lblNewLabel_2;
 	public JLabel lblNewLabel_3;
-	public JComboArma comboArma;
+	public PanelBusqueda panelBusqueda;
+	public PanelAnadirArma panelAnadirArma;
 
 	/**
 	 * Create the panel.
@@ -30,7 +34,7 @@ public class PanelPersonajes extends JPanel {
 		setLayout(null);
 		
 		botonesCrud = new JBotonesCrud();
-		botonesCrud.setBounds(170, 11, 185, 116);
+		botonesCrud.setBounds(10, 120, 185, 116);
 		add(botonesCrud);
 		
 		tfNombre = new JTextField();
@@ -69,9 +73,13 @@ public class PanelPersonajes extends JPanel {
 		lblNewLabel_3.setBounds(10, 88, 35, 14);
 		add(lblNewLabel_3);
 		
-		comboArma = new JComboArma((List) null);
-		comboArma.setBounds(10, 130, 104, 18);
-		add(comboArma);
+		panelBusqueda = new PanelBusqueda();
+		panelBusqueda.setBounds(245, 139, 258, 150);
+		add(panelBusqueda);
+		
+		panelAnadirArma = new PanelAnadirArma();
+		panelAnadirArma.setBounds(205, 11, 258, 116);
+		add(panelAnadirArma);
 
 	}
 }

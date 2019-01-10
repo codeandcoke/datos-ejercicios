@@ -5,6 +5,9 @@ import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * Panel principal para gestionar Armas
+ */
 public class PanelArmas extends JPanel {
 	public JBotonesCrud botonesCrud;
 	public JTextField tfNombre;
@@ -13,15 +16,13 @@ public class PanelArmas extends JPanel {
 	public JLabel lblNewLabel;
 	public JLabel lblNewLabel_1;
 	public JLabel lblNewLabel_2;
+	public PanelBusqueda panelBusqueda;
 
-	/**
-	 * Create the panel.
-	 */
 	public PanelArmas() {
 		setLayout(null);
 		
 		botonesCrud = new JBotonesCrud();
-		botonesCrud.setBounds(158, 11, 179, 107);
+		botonesCrud.setBounds(10, 94, 179, 107);
 		add(botonesCrud);
 		
 		tfNombre = new JTextField();
@@ -50,6 +51,10 @@ public class PanelArmas extends JPanel {
 		lblNewLabel_2 = new JLabel("Duraci\u00F3n");
 		lblNewLabel_2.setBounds(10, 62, 42, 14);
 		add(lblNewLabel_2);
+		
+		panelBusqueda = new PanelBusqueda();
+		panelBusqueda.setBounds(208, 124, 258, 150);
+		add(panelBusqueda);
 
 	}
 }

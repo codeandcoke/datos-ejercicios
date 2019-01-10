@@ -28,6 +28,7 @@ import com.sfaci.ejemplohibernate.base.Personaje;
 import com.sfaci.ejemplohibernate.beans.JEstado;
 import com.sfaci.ejemplohibernate.beans.PanelArmas;
 import com.sfaci.ejemplohibernate.beans.PanelPersonajes;
+import java.awt.Dimension;
 
 public class Vista extends JFrame {
 
@@ -40,6 +41,8 @@ public class Vista extends JFrame {
 	public JMenuItem miArmas;
 
 	public Vista() {
+		setMinimumSize(new Dimension(600, 450));
+		setPreferredSize(new Dimension(800, 600));
 		setTitle("CRUD Hibernate");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 368);
@@ -50,8 +53,8 @@ public class Vista extends JFrame {
 		JMenu mnNewMenu = new JMenu("Archivo");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem miSalir = new JMenuItem("Salir");
+		mnNewMenu.add(miSalir);
 		
 		mEditar = new JMenu("Editar");
 		menuBar.add(mEditar);
@@ -67,30 +70,18 @@ public class Vista extends JFrame {
 		JMenu mnNewMenu_1 = new JMenu("Opciones");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_1);
+		JMenuItem miConfiguracion = new JMenuItem("Configuraci\u00F3n");
+		mnNewMenu_1.add(miConfiguracion);
 		
-		JMenu mnNewMenu_2 = new JMenu("Ayuda");
-		menuBar.add(mnNewMenu_2);
+		JMenu mnAyuda = new JMenu("Ayuda");
+		menuBar.add(mnAyuda);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_2);
+		JMenuItem miAcercaDe = new JMenuItem("Acerca de");
+		mnAyuda.add(miAcercaDe);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JToolBar toolBar = new JToolBar();
-		contentPane.add(toolBar, BorderLayout.NORTH);
-		
-		JButton btnNewButton = new JButton("New button");
-		toolBar.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		toolBar.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("New button");
-		toolBar.add(btnNewButton_2);
 		
 		jEstado = new JEstado();
 		contentPane.add(jEstado, BorderLayout.SOUTH);
