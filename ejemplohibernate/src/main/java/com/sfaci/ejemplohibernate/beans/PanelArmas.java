@@ -1,14 +1,23 @@
 package com.sfaci.ejemplohibernate.beans;
 
-import javax.swing.JPanel;
-import javax.swing.SpringLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.sfaci.ejemplohibernate.Controlador.Accion;
+import com.sfaci.ejemplohibernate.Modelo;
+import com.sfaci.ejemplohibernate.Util;
+import com.sfaci.ejemplohibernate.base.Arma;
 
 /**
  * Panel principal para gestionar Armas
  */
-public class PanelArmas extends JPanel {
+public class PanelArmas extends JPanel implements ActionListener, MouseListener {
 	public JBotonesCrud botonesCrud;
 	public JTextField tfNombre;
 	public JTextField tfAtaque;
@@ -16,9 +25,13 @@ public class PanelArmas extends JPanel {
 	public JLabel lblNewLabel;
 	public JLabel lblNewLabel_1;
 	public JLabel lblNewLabel_2;
-	public PanelBusqueda panelBusqueda;
+	public PanelBusqueda<Arma> panelBusqueda;
+	
+	private Modelo modelo;
+	private Accion accion;
 
-	public PanelArmas() {
+	public PanelArmas(Modelo modelo) {
+		this.modelo = modelo;
 		setLayout(null);
 		
 		botonesCrud = new JBotonesCrud();
@@ -52,9 +65,115 @@ public class PanelArmas extends JPanel {
 		lblNewLabel_2.setBounds(10, 62, 42, 14);
 		add(lblNewLabel_2);
 		
-		panelBusqueda = new PanelBusqueda();
+		panelBusqueda = new PanelBusqueda<>();
 		panelBusqueda.setBounds(208, 124, 258, 150);
 		add(panelBusqueda);
+		
+		botonesCrud.addListeners(this);
+		
+		inicializar();
+	}
+	
+	private void inicializar() {
+		panelBusqueda.inicializar(modelo.getArmas());
+		panelBusqueda.addListener(this);
+	}
+	
+	private void modoEdicion(boolean edicion) {
+		tfNombre.setEditable(edicion);
+		tfAtaque.setEditable(edicion);
+		tfDuracion.setEditable(edicion);
+		
+		botonesCrud.modoEdicion(edicion);
+	}
+	
+	private void cargar(Arma arma) {
+		tfNombre.setText(arma.getNombre());
+		tfAtaque.setText(String.valueOf(arma.getAtaque()));
+		tfDuracion.setText(String.valueOf(arma.getDuracion()));
+	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String actionCommand = e.getActionCommand();
+		
+		Arma arma = null;
+		switch (actionCommand) {
+			case "nuevo":
+				tfNombre.setText("");
+				tfAtaque.setText("");
+				tfDuracion.setText("");
+				modoEdicion(true);
+				accion = Accion.NUEVO;
+				break;
+			case "modificar":
+				modoEdicion(true);
+				accion = Accion.MODIFICAR;
+				break;
+			case "guardar":
+				String nombre = tfNombre.getText();
+				int ataque = Integer.parseInt(tfAtaque.getText());
+				int duracion = Integer.parseInt(tfDuracion.getText());
+				
+				switch (accion) {
+					case NUEVO:
+						arma = new Arma();
+						break;
+					case MODIFICAR:
+						arma = panelBusqueda.getSeleccionado();
+						break;
+					default:
+						Util.mensajeError("Operación desconocida");
+						break;
+				}
+				arma.setNombre(nombre);
+				arma.setAtaque(ataque);
+				arma.setDuracion(duracion);
+				
+				modelo.guardar(arma);
+				modoEdicion(false);
+				break;
+			case "eliminar":
+				arma = panelBusqueda.getSeleccionado();
+				modelo.eliminar(arma);
+				break;
+			case "cancelar":
+				
+				break;
+		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		Arma armaSeleccionada = panelBusqueda.getSeleccionado();
+		if (armaSeleccionada == null)
+			return;
+		
+		cargar(armaSeleccionada);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

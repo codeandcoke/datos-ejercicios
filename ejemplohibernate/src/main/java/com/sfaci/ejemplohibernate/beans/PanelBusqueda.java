@@ -1,9 +1,9 @@
 package com.sfaci.ejemplohibernate.beans;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -65,9 +65,17 @@ public class PanelBusqueda<T> extends JPanel implements KeyListener {
 		listar();
 	}
 	
+	public T getSeleccionado() {
+		return lista.getSelectedValue();
+	}
+	
 	private void buscar() {
 		String busqueda = tfBusqueda.getText();
 		
+	}
+	
+	public void addListener(MouseListener listener) {
+		lista.addMouseListener(listener);
 	}
 
 	@Override

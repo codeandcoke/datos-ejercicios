@@ -29,15 +29,6 @@ public class Personaje {
 	@OneToMany(mappedBy="personaje")
 	private List<Arma> armas;
 	
-	public Personaje(long id, String nombre, String descripcion, int vida, int ataque) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.vida = vida;
-		this.ataque = ataque;
-	}
-	
 	public Personaje() {}
 
 	public long getId() {

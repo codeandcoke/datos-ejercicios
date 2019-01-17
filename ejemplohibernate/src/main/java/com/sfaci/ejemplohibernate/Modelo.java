@@ -69,16 +69,20 @@ public class Modelo {
 		return null;
 	}
 	
-	public void nueva(Arma arma) {
-		
-	}
-	
-	public void modificar(Arma arma) {
-		
+	public void guardar(Arma arma) {
+		Session sesion = HibernateUtil.getCurrentSession();
+		sesion.beginTransaction();
+		sesion.save(arma);
+		sesion.getTransaction().commit();
+		sesion.close();
 	}
 	
 	public void eliminar(Arma arma) {
-		
+		Session sesion = HibernateUtil.getCurrentSession();
+		sesion.beginTransaction();
+		sesion.delete(arma);
+		sesion.getTransaction().commit();
+		sesion.close();
 	}
 	
 	public List<Arma> getArmas() {

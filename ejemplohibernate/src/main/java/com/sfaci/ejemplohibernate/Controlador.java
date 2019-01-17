@@ -101,11 +101,11 @@ public class Controlador implements ActionListener, ListSelectionListener, Focus
 				eliminarPersonaje();
 				break;
 			case PANEL_PERSONAJES:
-				PanelPersonajes panelPersonajes = new PanelPersonajes();
+				PanelPersonajes panelPersonajes = new PanelPersonajes(modelo);
 				vista.tpPaneles.addTab("Personajes", panelPersonajes);
 				break;
 			case PANEL_ARMAS:
-				PanelArmas panelArmas = new PanelArmas();
+				PanelArmas panelArmas = new PanelArmas(modelo);
 				vista.tpPaneles.addTab("Armas", panelArmas);
 				break;
 			default:

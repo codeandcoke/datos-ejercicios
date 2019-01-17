@@ -1,20 +1,19 @@
 package com.sfaci.ejemplohibernate.beans;
 
-import javax.swing.JPanel;
-import javax.swing.SpringLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import com.sfaci.ejemplohibernate.base.Arma;
-import javax.swing.JButton;
-import javax.swing.JList;
+
+import com.sfaci.ejemplohibernate.Modelo;
 import com.sfaci.ejemplohibernate.base.Personaje;
-import java.util.List;
 
 /**
  * Panel para la gestión de los personajes de la aplicación
  */
-public class PanelPersonajes extends JPanel {
+public class PanelPersonajes extends JPanel implements ActionListener {
 	public JBotonesCrud botonesCrud;
 	public JTextField tfNombre;
 	public JTextField tfDescripcion;
@@ -24,13 +23,16 @@ public class PanelPersonajes extends JPanel {
 	public JLabel lblNewLabel_1;
 	public JLabel lblNewLabel_2;
 	public JLabel lblNewLabel_3;
-	public PanelBusqueda panelBusqueda;
+	public PanelBusqueda<Personaje> panelBusqueda;
 	public PanelAnadirArma panelAnadirArma;
+	
+	private Modelo modelo;
 
 	/**
 	 * Create the panel.
 	 */
-	public PanelPersonajes() {
+	public PanelPersonajes(Modelo modelo) {
+		this.modelo = modelo;
 		setLayout(null);
 		
 		botonesCrud = new JBotonesCrud();
@@ -73,7 +75,7 @@ public class PanelPersonajes extends JPanel {
 		lblNewLabel_3.setBounds(10, 88, 35, 14);
 		add(lblNewLabel_3);
 		
-		panelBusqueda = new PanelBusqueda();
+		panelBusqueda = new PanelBusqueda<>();
 		panelBusqueda.setBounds(245, 139, 258, 150);
 		add(panelBusqueda);
 		
@@ -81,5 +83,45 @@ public class PanelPersonajes extends JPanel {
 		panelAnadirArma.setBounds(205, 11, 258, 116);
 		add(panelAnadirArma);
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String actionCommand = e.getActionCommand();
+		
+		Personaje personaje = null;
+		switch (actionCommand) {
+			case "nuevo":
+				tfNombre.setText("");
+				tfDescripcion.setText("");
+				tfVida.setText("");
+				tfAtaque.setText("");
+				break;
+			case "modificar":
+				
+				break;
+			case "guardar":
+				String nombre = tfNombre.getText();
+				String descripcion = tfDescripcion.getText();
+				int vida = Integer.parseInt(tfVida.getText());
+				int ataque = Integer.parseInt(tfAtaque.getText());
+				
+				personaje = new Personaje();
+				personaje.setNombre(nombre);
+				personaje.setDescripcion(descripcion);
+				personaje.setVida(vida);
+				personaje.setAtaque(ataque);
+				
+				modelo.guardar(personaje);
+				break;
+			case "eliminar":
+				personaje = panelBusqueda.getSeleccionado();
+				modelo.eliminar(personaje);
+				break;
+			case "cancelar":
+				
+				break;
+		}
+		
 	}
 }
