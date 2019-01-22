@@ -1,5 +1,6 @@
 package com.sfaci.ejemplohibernate.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -29,7 +30,9 @@ public class Personaje {
 	@OneToMany(mappedBy="personaje")
 	private List<Arma> armas;
 	
-	public Personaje() {}
+	public Personaje() {
+		armas = new ArrayList<>();
+	}
 
 	public long getId() {
 		return id;
@@ -71,6 +74,14 @@ public class Personaje {
 		this.ataque = ataque;
 	}
 	
+	public List<Arma> getArmas() {
+		return armas;
+	}
+
+	public void setArmas(List<Arma> armas) {
+		this.armas = armas;
+	}
+
 	@Override
 	public String toString() {
 		return nombre;

@@ -2,18 +2,21 @@ package com.sfaci.ejemplohibernate.beans;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.sfaci.ejemplohibernate.Controlador.Accion;
 import com.sfaci.ejemplohibernate.Modelo;
 import com.sfaci.ejemplohibernate.base.Personaje;
 
 /**
  * Panel para la gestión de los personajes de la aplicación
  */
-public class PanelPersonajes extends JPanel implements ActionListener {
+public class PanelPersonajes extends JPanel implements ActionListener, MouseListener {
 	public JBotonesCrud botonesCrud;
 	public JTextField tfNombre;
 	public JTextField tfDescripcion;
@@ -27,6 +30,7 @@ public class PanelPersonajes extends JPanel implements ActionListener {
 	public PanelAnadirArma panelAnadirArma;
 	
 	private Modelo modelo;
+	private Accion accion;
 
 	/**
 	 * Create the panel.
@@ -36,6 +40,11 @@ public class PanelPersonajes extends JPanel implements ActionListener {
 		setLayout(null);
 		
 		botonesCrud = new JBotonesCrud();
+		botonesCrud.btEliminar.setActionCommand("eliminar");
+		botonesCrud.btCancelar.setActionCommand("cancelar");
+		botonesCrud.btGuardar.setActionCommand("guardar");
+		botonesCrud.btModificar.setActionCommand("modificar");
+		botonesCrud.btNuevo.setActionCommand("nuevo");
 		botonesCrud.setBounds(10, 120, 185, 116);
 		add(botonesCrud);
 		
@@ -82,7 +91,34 @@ public class PanelPersonajes extends JPanel implements ActionListener {
 		panelAnadirArma = new PanelAnadirArma();
 		panelAnadirArma.setBounds(205, 11, 258, 116);
 		add(panelAnadirArma);
-
+		
+		inicializar();
+	}
+	
+	private void inicializar() {
+		botonesCrud.addListeners(this);
+		panelBusqueda.addListener(this);
+		
+		Modelo modelo = new Modelo();
+		panelBusqueda.inicializar(modelo.getPersonajes());
+		modoEdicion(false);
+	}
+	
+	private void modoEdicion(boolean edicion) {
+		tfNombre.setEditable(edicion);
+		tfDescripcion.setEditable(edicion);
+		tfAtaque.setEditable(edicion);
+		tfVida.setEditable(edicion);
+		
+		botonesCrud.modoEdicion(edicion);
+	}
+	
+	private void cargar(Personaje personaje) {
+		tfNombre.setText(personaje.getNombre());
+		tfDescripcion.setText(personaje.getDescripcion());
+		tfAtaque.setText(String.valueOf(personaje.getAtaque()));
+		tfVida.setText(String.valueOf(personaje.getVida()));
+		panelAnadirArma.anadirArmas(personaje.getArmas());
 	}
 
 	@Override
@@ -96,9 +132,12 @@ public class PanelPersonajes extends JPanel implements ActionListener {
 				tfDescripcion.setText("");
 				tfVida.setText("");
 				tfAtaque.setText("");
+				accion = Accion.NUEVO;
+				modoEdicion(true);
 				break;
 			case "modificar":
-				
+				accion = Accion.MODIFICAR;
+				modoEdicion(true);
 				break;
 			case "guardar":
 				String nombre = tfNombre.getText();
@@ -106,22 +145,65 @@ public class PanelPersonajes extends JPanel implements ActionListener {
 				int vida = Integer.parseInt(tfVida.getText());
 				int ataque = Integer.parseInt(tfAtaque.getText());
 				
-				personaje = new Personaje();
+				switch (accion) {
+					case NUEVO:
+						personaje = new Personaje();
+						break;
+					case MODIFICAR:
+						personaje = panelBusqueda.getSeleccionado();
+						break;
+				}
 				personaje.setNombre(nombre);
 				personaje.setDescripcion(descripcion);
 				personaje.setVida(vida);
 				personaje.setAtaque(ataque);
+				personaje.getArmas().addAll(panelAnadirArma.getListadoArmas());
 				
 				modelo.guardar(personaje);
+				panelBusqueda.refrescar();
 				break;
 			case "eliminar":
 				personaje = panelBusqueda.getSeleccionado();
 				modelo.eliminar(personaje);
 				break;
 			case "cancelar":
-				
+				modoEdicion(false);
 				break;
 		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
+		Personaje personaje = panelBusqueda.getSeleccionado();
+		if (personaje == null)
+			return;
+		
+		cargar(personaje);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

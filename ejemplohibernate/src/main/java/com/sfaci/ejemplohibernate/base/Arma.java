@@ -48,6 +48,22 @@ public class Arma {
 		this.duracion = duracion;
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Personaje getPersonaje() {
+		return personaje;
+	}
+
+	public void setPersonaje(Personaje personaje) {
+		this.personaje = personaje;
+	}
+
 	@Override
 	public String toString() {
 		return nombre;

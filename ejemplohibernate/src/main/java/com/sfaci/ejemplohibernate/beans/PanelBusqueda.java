@@ -35,6 +35,8 @@ public class PanelBusqueda<T> extends JPanel implements KeyListener {
 		
 		lista = new JList<>();
 		scrollPane.setViewportView(lista);
+		modeloLista = new DefaultListModel<>();
+		lista.setModel(modeloLista);
 	}
 	
 	public void inicializar(List<T> datos) {

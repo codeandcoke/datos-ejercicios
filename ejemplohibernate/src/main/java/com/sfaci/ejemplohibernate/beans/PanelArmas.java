@@ -77,6 +77,7 @@ public class PanelArmas extends JPanel implements ActionListener, MouseListener 
 	private void inicializar() {
 		panelBusqueda.inicializar(modelo.getArmas());
 		panelBusqueda.addListener(this);
+		modoEdicion(false);
 	}
 	
 	private void modoEdicion(boolean edicion) {
@@ -131,11 +132,13 @@ public class PanelArmas extends JPanel implements ActionListener, MouseListener 
 				arma.setDuracion(duracion);
 				
 				modelo.guardar(arma);
+				panelBusqueda.refrescar();
 				modoEdicion(false);
 				break;
 			case "eliminar":
 				arma = panelBusqueda.getSeleccionado();
 				modelo.eliminar(arma);
+				panelBusqueda.refrescar();
 				break;
 			case "cancelar":
 				

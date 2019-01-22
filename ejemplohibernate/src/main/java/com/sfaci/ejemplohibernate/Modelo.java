@@ -32,6 +32,10 @@ public class Modelo {
 		Session sesion = HibernateUtil.getCurrentSession();
 		sesion.beginTransaction();
 		sesion.save(personaje);
+		for (Arma arma : personaje.getArmas()) {
+			arma.setPersonaje(personaje);
+			sesion.save(arma);
+		}
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -86,9 +90,15 @@ public class Modelo {
 	}
 	
 	public List<Arma> getArmas() {
-		
 		Session sesion = HibernateUtil.getCurrentSession();
 		ArrayList<Arma> armas = (ArrayList<Arma>) sesion.createQuery("FROM Arma").list();
+		return armas;
+	}
+	
+	public List<Arma> getArmasLibres() {
+		Session sesion = HibernateUtil.getCurrentSession();
+		List<Arma> armas = (ArrayList<Arma>) 
+				sesion.createQuery("FROM Arma a WHERE a.personaje IS NULL").list();
 		return armas;
 	}
 }
