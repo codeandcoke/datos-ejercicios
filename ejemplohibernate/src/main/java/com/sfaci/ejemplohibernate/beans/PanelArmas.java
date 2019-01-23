@@ -11,8 +11,8 @@ import javax.swing.JTextField;
 
 import com.sfaci.ejemplohibernate.Controlador.Accion;
 import com.sfaci.ejemplohibernate.Modelo;
-import com.sfaci.ejemplohibernate.Util;
 import com.sfaci.ejemplohibernate.base.Arma;
+import com.sfaci.ejemplohibernate.util.Util;
 
 /**
  * Panel principal para gestionar Armas
@@ -88,6 +88,10 @@ public class PanelArmas extends JPanel implements ActionListener, MouseListener 
 		botonesCrud.modoEdicion(edicion);
 	}
 	
+	/**
+	 * Carga el arma que se le pasa como parámetro, que será la que se haya seleccionado
+	 * @param arma
+	 */
 	private void cargar(Arma arma) {
 		tfNombre.setText(arma.getNombre());
 		tfAtaque.setText(String.valueOf(arma.getAtaque()));
@@ -112,6 +116,9 @@ public class PanelArmas extends JPanel implements ActionListener, MouseListener 
 				accion = Accion.MODIFICAR;
 				break;
 			case "guardar":
+				if (Util.mensajeConfirmacion() == Util.NO)
+					return;
+				
 				String nombre = tfNombre.getText();
 				int ataque = Integer.parseInt(tfAtaque.getText());
 				int duracion = Integer.parseInt(tfDuracion.getText());
@@ -136,12 +143,18 @@ public class PanelArmas extends JPanel implements ActionListener, MouseListener 
 				modoEdicion(false);
 				break;
 			case "eliminar":
+				if (!panelBusqueda.estaSeleccionado())
+					return;
+				
+				if (Util.mensajeConfirmacion() == Util.NO)
+					return;
+				
 				arma = panelBusqueda.getSeleccionado();
 				modelo.eliminar(arma);
-				panelBusqueda.refrescar();
+				panelBusqueda.inicializar(modelo.getArmas());
 				break;
 			case "cancelar":
-				
+				modoEdicion(false);
 				break;
 		}
 		

@@ -18,6 +18,8 @@ import com.sfaci.ejemplohibernate.base.Arma;
 
 /**
  * Panel para añadir y gestionar las armas de un personaje
+ * Contiene un Combo para listarlas, un botón para añadirlas y una lista
+ * para mostrarlas
  */
 public class PanelAnadirArma extends JPanel implements ActionListener {
 	public JPanel panel;

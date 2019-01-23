@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import com.sfaci.ejemplohibernate.Controlador.Accion;
 import com.sfaci.ejemplohibernate.Modelo;
 import com.sfaci.ejemplohibernate.base.Personaje;
+import com.sfaci.ejemplohibernate.util.Util;
 
 /**
  * Panel para la gestión de los personajes de la aplicación
@@ -140,6 +141,9 @@ public class PanelPersonajes extends JPanel implements ActionListener, MouseList
 				modoEdicion(true);
 				break;
 			case "guardar":
+				if (Util.mensajeConfirmacion() == Util.NO)
+					return;
+				
 				String nombre = tfNombre.getText();
 				String descripcion = tfDescripcion.getText();
 				int vida = Integer.parseInt(tfVida.getText());
@@ -163,20 +167,25 @@ public class PanelPersonajes extends JPanel implements ActionListener, MouseList
 				panelBusqueda.refrescar();
 				break;
 			case "eliminar":
+				if (!panelBusqueda.estaSeleccionado())
+					return;
+				
+				if (Util.mensajeConfirmacion() == Util.NO)
+					return;
+				
 				personaje = panelBusqueda.getSeleccionado();
 				modelo.eliminar(personaje);
+				panelBusqueda.inicializar(modelo.getPersonajes());
 				break;
 			case "cancelar":
 				modoEdicion(false);
 				break;
 		}
-		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

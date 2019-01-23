@@ -28,6 +28,10 @@ public class Modelo {
 		HibernateUtil.closeSessionFactory();
 	}
 	
+	/**
+	 * Guarda un personaje (y todas las armas asociadas) en la base de datos
+	 * @param personaje
+	 */
 	public void guardar(Personaje personaje) {
 		Session sesion = HibernateUtil.getCurrentSession();
 		sesion.beginTransaction();
@@ -40,6 +44,10 @@ public class Modelo {
 		sesion.close();
 	}
 	
+	/**
+	 * Elimina un personaje de la base de datos
+	 * @param personaje
+	 */
 	public void eliminar(Personaje personaje) {
 		Session sesion = HibernateUtil.getCurrentSession();
 		sesion.beginTransaction();
@@ -52,6 +60,11 @@ public class Modelo {
 		
 	}
 	
+	/**
+	 * Comprueba si existe un personaje con el nombre que se pasa como parámetro
+	 * @param nombre
+	 * @return
+	 */
 	public boolean existePersonaje(String nombre) {
 		Session sesion = HibernateUtil.getCurrentSession();
 		Query<Personaje> query = sesion.createQuery("FROM Personaje WHERE nombre = :nombre");
@@ -61,6 +74,10 @@ public class Modelo {
 		return (personaje != null);
 	}
 	
+	/**
+	 * Obtiene todos los personajes que hay en la base de datos
+	 * @return
+	 */
 	public List<Personaje> getPersonajes() {
 		
 		Session sesion = HibernateUtil.getCurrentSession();
@@ -73,6 +90,10 @@ public class Modelo {
 		return null;
 	}
 	
+	/**
+	 * Guarda un arma en la base de datos
+	 * @param arma
+	 */
 	public void guardar(Arma arma) {
 		Session sesion = HibernateUtil.getCurrentSession();
 		sesion.beginTransaction();
@@ -81,6 +102,10 @@ public class Modelo {
 		sesion.close();
 	}
 	
+	/**
+	 * Elimina el arma que se pasa como parámetro
+	 * @param arma
+	 */
 	public void eliminar(Arma arma) {
 		Session sesion = HibernateUtil.getCurrentSession();
 		sesion.beginTransaction();
@@ -89,12 +114,20 @@ public class Modelo {
 		sesion.close();
 	}
 	
+	/**
+	 * Obtiene todas las armas que hay en la base de datos
+	 * @return
+	 */
 	public List<Arma> getArmas() {
 		Session sesion = HibernateUtil.getCurrentSession();
 		ArrayList<Arma> armas = (ArrayList<Arma>) sesion.createQuery("FROM Arma").list();
 		return armas;
 	}
 	
+	/**
+	 * Obtiene todas las armas que están sin asociar con un personaje
+	 * @return
+	 */
 	public List<Arma> getArmasLibres() {
 		Session sesion = HibernateUtil.getCurrentSession();
 		List<Arma> armas = (ArrayList<Arma>) 

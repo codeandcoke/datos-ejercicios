@@ -2,10 +2,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sfaci</groupId>
   <artifactId>ejemplohibernate</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <name>Ejemplo Hibernate</name>
   <description>Proyecto de ejemplo con Hibernate</description>
-  
+
   <dependencies>
   	<dependency>
     	<groupId>org.hibernate</groupId>
@@ -17,5 +17,47 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>8.0.13</version>
 	</dependency>
+	<dependency>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-javadoc-plugin</artifactId>
+	    <version>3.0.1</version>
+	</dependency>
   </dependencies>
+  <build>
+    <plugins>
+       <plugin>
+       	<!-- Empaqueta la aplicación y sus dependencias en un solo jar -->
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-assembly-plugin</artifactId>
+		  <executions>
+		    <execution>
+		      <phase>package</phase>
+		      <goals>
+		        <goal>single</goal>
+		      </goals>
+		      <configuration>
+		        <archive>
+		          <manifest>
+		            <mainClass>com.sfaci.ejemplohibernate.Aplicacion</mainClass>
+		          </manifest>
+		        </archive>
+		        <descriptorRefs>
+		          <descriptorRef>jar-with-dependencies</descriptorRef>
+		        </descriptorRefs>
+		      </configuration>
+		    </execution>
+		  </executions>
+		</plugin>
+      <plugin>
+      <!-- Especifica la versión de Java que emplea el proyecto -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+   </build>
 </project>
