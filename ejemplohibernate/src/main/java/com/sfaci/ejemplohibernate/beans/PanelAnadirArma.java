@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -67,12 +68,7 @@ public class PanelAnadirArma extends JPanel implements ActionListener {
 	}
 	
 	public List<Arma> getListadoArmas() {
-		List<Arma> armas = new ArrayList<>();
-		for (int i = 0; i < modeloLista.size(); i++) {
-			armas.add(modeloLista.getElementAt(i));
-		}
-		
-		return armas;
+		return Collections.list(modeloLista.elements());
 	}
 	
 	public void anadirArmas(List<Arma> armas) {

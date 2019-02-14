@@ -36,6 +36,21 @@ public class Modelo {
 		Session sesion = HibernateUtil.getCurrentSession();
 		sesion.beginTransaction();
 		sesion.save(personaje);
+		
+		for (Arma arma : personaje.getArmas()) {
+			arma.setPersonaje(personaje);
+			sesion.save(arma);
+		}
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
+	
+	public void modificar(Personaje personaje, List<Arma> armas) {
+		Session sesion = HibernateUtil.getCurrentSession();
+		sesion.beginTransaction();
+		personaje.getArmas().clear();
+		sesion.save(personaje);
+		
 		for (Arma arma : personaje.getArmas()) {
 			arma.setPersonaje(personaje);
 			sesion.save(arma);
