@@ -4,24 +4,24 @@ import java.time.LocalDate;
 
 import org.bson.types.ObjectId;
 
-public class Coche {
+public class Coche implements Comparable {
 
-	private ObjectId _id;
+	private ObjectId id;
 	private String marca;
 	private String modelo;
 	private float precio;
 	private LocalDate fechaCompra;
+	private Propietario propietario;
 	
 	public Coche() {
-		super();
 	}
 	
-	public ObjectId get_id() {
-		return _id;
+	public ObjectId getId() {
+		return id;
 	}
 
-	public void set_id(ObjectId _id) {
-		this._id = _id;
+	public void setId(ObjectId _id) {
+		this.id = _id;
 	}
 
 	public String getMarca() {
@@ -56,12 +56,38 @@ public class Coche {
 		this.fechaCompra = fechaCompra;
 	}
 	
+	public Propietario getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Coche))
+			return false;
+		
+		Coche coche = (Coche) obj;
+		if (marca.equals(coche.getMarca()) && (modelo.equals(coche.getModelo())))
+			return true;
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return toString().hashCode();
+	}
+
 	@Override
 	public String toString() {
 		return marca + " " + modelo;
 	}
-	
-	public void reparar() {
-		
+
+	@Override
+	public int compareTo(Object o) {
+		return 0;
 	}
 }

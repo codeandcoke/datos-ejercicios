@@ -3,9 +3,9 @@ package com.santi.holamongo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.List;
 
 import com.santi.holamongo.domain.Coche;
+import com.santi.holamongo.domain.Propietario;
 import com.santi.holamongo.ui.Vista;
 import com.santi.holamongo.util.NumeroUtil;
 
@@ -24,6 +24,11 @@ public class Controlador implements ActionListener {
 	private void inicializar() {
 		vista.botonesCrud.addListeners(this);
 		vista.panelBusqueda.listar(modelo.getCoches());
+	
+		for (Propietario propietario : modelo.getPropietarios()) {
+			vista.cbPropietarios.addItem(propietario);
+			System.out.println(propietario.getId());
+		}
 	}
 
 	@Override
@@ -39,6 +44,7 @@ public class Controlador implements ActionListener {
 					coche.setModelo(vista.tfModelo.getText());
 					coche.setPrecio(NumeroUtil.parseMoneda(vista.tfPrecio.getText()));
 					coche.setFechaCompra(vista.dpFechaCompra.getDate());
+					coche.setPropietario((Propietario) vista.cbPropietarios.getSelectedItem());
 					modelo.anadir(coche);
 					vista.panelBusqueda.anadir(coche);
 				} catch (ParseException pe) {

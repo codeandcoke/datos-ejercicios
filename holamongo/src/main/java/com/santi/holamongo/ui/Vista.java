@@ -1,11 +1,10 @@
 package com.santi.holamongo.ui;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +15,7 @@ import com.github.lgooddatepicker.components.DatePicker;
 import com.santi.holamongo.beans.JBotonesCrud;
 import com.santi.holamongo.beans.PanelBusqueda;
 import com.santi.holamongo.domain.Coche;
+import com.santi.holamongo.domain.Propietario;
 import com.santi.holamongo.util.NumeroUtil;
 
 public class Vista extends JFrame implements FocusListener {
@@ -32,6 +32,7 @@ public class Vista extends JFrame implements FocusListener {
 	public JLabel lblTalleresAfuera;
 	public JBotonesCrud botonesCrud;
 	public PanelBusqueda<Coche> panelBusqueda;
+	public JComboBox<Propietario> cbPropietarios;
 
 	/**
 	 * Create the frame.
@@ -39,7 +40,7 @@ public class Vista extends JFrame implements FocusListener {
 	public Vista() {
 		setTitle("HolaMongo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 541, 323);
+		setBounds(100, 100, 541, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -92,6 +93,10 @@ public class Vista extends JFrame implements FocusListener {
 		panelBusqueda = new PanelBusqueda<>();
 		panelBusqueda.setBounds(342, 52, 175, 188);
 		contentPane.add(panelBusqueda);
+		
+		cbPropietarios = new JComboBox();
+		cbPropietarios.setBounds(205, 168, 107, 20);
+		contentPane.add(cbPropietarios);
 		
 		inicializar();
 		setLocationRelativeTo(null);
